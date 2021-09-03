@@ -57,6 +57,12 @@ app.put('/players/:id', async (req, res) => {
     res.redirect('/players');
 });
 
+app.delete('/players/:id', async (req, res) => {
+    const { id } = req.params;
+    const comment = await Comment.findByIdAndDelete(id);
+    res.redirect('/players');
+});
+
 app.listen(3000, () => {
     console.log('Serving on port 3000');
 });

@@ -5,16 +5,46 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Valorant Players</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"
+        ></script>
     </head>
     <body>
         <h1>Most Loved Players</h1>
-        <ul>
-            <% for (let player of players) {%>
-            <li>
-                <a href="/players/<%= player._id %> "><%= player.name %> </a>
-            </li>
-            <% } %>
-        </ul>
+
+        <% for (let player of players) {%>
+
+        <div class="card mb-3 mx-auto d-inline-block" style="width: 18rem">
+            <img src="<%=player.image%>" class="card-img-top" alt="..." />
+            <div class="card-body">
+                <h5 class="card-title"><%= player.name %></h5>
+                <a href="/players/<%= player._id %>" class="btn btn-primary"
+                    >More Details</a
+                >
+            </div>
+        </div>
+
+        <!-- <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-fluid" src="<%=player.image%>" alt="" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="/players/<%= player._id %> "
+                        ><%= player.name %>
+                    </a>
+                </div>
+            </div> -->
+        <% } %>
         <h1>Share Your Thoughts With Us</h1>
         <form action="/players" method="POST">
             <div>
@@ -57,6 +87,12 @@
         <p><%= comment.description %></p>
         <div>
             <a href="/players/<%= comment._id %>/edit">Edit</a>
+            <form
+                action="/players/<%=comment._id%>?_method=DELETE"
+                method="POST"
+            >
+                <button class="btn btn-danger">Delete</button>
+            </form>
         </div>
         <% } %>
     </body>
