@@ -18,11 +18,15 @@
         ></script>
     </head>
     <body>
-        <h1><%=player.name%></h1>
-        <img src="<%=player.image%>" alt="" />
-        <ul>
-            <li><%= player.rating %></li>
-            <li><%= player.description %></li>
-        </ul>
+        <div class="row">
+            <div class="col-6">
+                <h1><%=player.name%></h1>
+                <img src="<%=player.image%>" alt="" />
+                <ul>
+                    <li><%= player.rating %></li>
+                    <li><%= player.description %></li>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>

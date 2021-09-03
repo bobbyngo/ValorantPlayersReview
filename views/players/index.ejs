@@ -18,82 +18,128 @@
         ></script>
     </head>
     <body>
-        <h1>Most Loved Players</h1>
+        <h2 class="text-center mb-5">Most Loved Players</h2>
 
-        <% for (let player of players) {%>
+        <div class="d-flex justify-content-center">
+            <% for (let player of players) {%>
 
-        <div class="card mb-3 mx-auto d-inline-block" style="width: 18rem">
-            <img src="<%=player.image%>" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title"><%= player.name %></h5>
-                <a href="/players/<%= player._id %>" class="btn btn-primary"
-                    >More Details</a
-                >
+            <div class="card mb-3 d-inline-block" style="width: 18rem">
+                <img src="<%=player.image%>" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title text-center"><%= player.name %></h5>
+                    <a
+                        href="/players/<%= player._id %>"
+                        class="d-flex justify-content-center btn btn-primary"
+                        >More Details</a
+                    >
+                </div>
             </div>
+            <% } %>
         </div>
 
-        <!-- <div class="card mb-3">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img class="img-fluid" src="<%=player.image%>" alt="" />
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <a href="/players/<%= player._id %> "
-                        ><%= player.name %>
-                    </a>
-                </div>
-            </div> -->
-        <% } %>
-        <h1>Share Your Thoughts With Us</h1>
-        <form action="/players" method="POST">
-            <div>
-                <label for="name">Username</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Username"
-                    required
-                />
-            </div>
-            <div>
-                <label for="title">Title</label>
-                <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    placeholder="Title"
-                    required
-                />
-            </div>
-            <div>
-                <label for="description">Description</label>
-                <textarea
-                    name="description"
-                    id="description"
-                    required
-                ></textarea>
-            </div>
-            <div>
-                <button>Submit</button>
-            </div>
-        </form>
-        <h2>Feature Recommendation</h2>
-
-        <% for (let comment of comments) {%>
-        <h3><%= comment.title %></h3>
-        <p>Submitted by <%= comment.name %></p>
-        <p><%= comment.description %></p>
-        <div>
-            <a href="/players/<%= comment._id %>/edit">Edit</a>
+        <h2 class="text-center">Share Your Thoughts With Us</h2>
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
             <form
-                action="/players/<%=comment._id%>?_method=DELETE"
+                action="/players"
                 method="POST"
+                novalidate
+                class="validated-form"
             >
-                <button class="btn btn-danger">Delete</button>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Username</label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Username"
+                        required
+                    />
+                    <div class="valid-feedback"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        name="title"
+                        id="title"
+                        placeholder="Title"
+                        required
+                    />
+                    <div class="valid-feedback"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description"
+                        >Description</label
+                    >
+                    <textarea
+                        class="form-control"
+                        name="description"
+                        id="description"
+                        required
+                    ></textarea>
+                    <div class="valid-feedback"></div>
+                </div>
+                <div class="mb-3 text-center">
+                    <button class="btn btn-dark">Submit</button>
+                </div>
             </form>
         </div>
-        <% } %>
+
+        <h2 class="text-center">Feature Recommendation</h2>
+
+        <div class="justify-content-md-center">
+            <% for (let comment of comments) {%>
+            <div class="card mb-5" style="width: 18rem">
+                <div class="card-body">
+                    <h5 class="card-title text-center"><%= comment.title %></h5>
+                    <p class="card-text"><%= comment.description %></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">
+                        <%= comment.name %>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <a href="/players/<%= comment._id %>/edit" class="card-link"
+                        >Edit</a
+                    >
+                    <form
+                        action="/players/<%=comment._id%>?_method=DELETE"
+                        method="POST"
+                    >
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+            <% } %>
+        </div>
     </body>
 </html>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.validated-form');
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener(
+                'submit',
+                function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                },
+                false
+            );
+        });
+    })();
+</script>
