@@ -16,5 +16,5 @@ type mongo
 # Run the app
 ```
 node app.js
-visit the application in browser: localhost:3000/players
+visit the application in browser: http://localhost:3000/players
 ```
