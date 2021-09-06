@@ -13,8 +13,8 @@ open another window powershell
 ```
 type mongo
 ```
-# Run the app by open Git Bash
+# Run the app
 ```
 node app.js
-visit the site: localhost:3000/players
+visit the application in browser: localhost:3000/players
 ```
