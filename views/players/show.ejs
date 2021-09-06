@@ -24,16 +24,35 @@
             </div>
         </nav>
 
-        <div class="col-6">
-            <h1><%=player.name%></h1>
-            <img src="<%=player.image%>" alt="" />
-            <ul>
-                <li><%= player.rating %></li>
-                <li><%= player.description %></li>
-            </ul>
+        <div class="card mb-3 mx-auto" style="max-width: 1080px">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img
+                        src="<%=player.image%>"
+                        class="img-fluid rounded-start"
+                        alt="..."
+                    />
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body text-center">
+                        <h3 class="card-title"><%=player.name%></h3>
+                        <p class="card-text">
+                            Description: <%= player.description %>
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted"
+                                >Rating: <%= player.rating %></small
+                            >
+                        </p>
+                        <a href="/players" class="btn btn-primary"
+                            >Back To Home</a
+                        >
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <footer class="footer bg-dark py-3 mt-auto text-center">
+        <footer class="footer bg-dark py-3 mt-auto text-center fixed-bottom">
             <div class="container">
                 <span class="text-muted">&copy; 2021</span>
             </div>
