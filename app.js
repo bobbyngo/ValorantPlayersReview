@@ -65,6 +65,10 @@ app.delete('/players/:id', async (req, res) => {
     res.redirect('/players');
 });
 
+app.get('*', (req, res) => {
+    res.send('404 page not found');
+});
+
 app.listen(3000, () => {
     console.log('Serving on port 3000');
 });
