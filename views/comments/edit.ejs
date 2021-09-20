@@ -18,39 +18,68 @@
         ></script>
     </head>
     <body>
-        <form action="/players/<%= comment._id %>?_method=PUT" method="POST">
-            <div>
-                <label for="name">Username</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Username"
-                    value="<%=comment.name%>"
-                    required
-                />
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/players">Home</a>
             </div>
-            <div>
-                <label for="title">Title</label>
-                <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    placeholder="Title"
-                    value="<%=comment.title%>"
-                    required
-                />
-            </div>
-            <div>
-                <label for="description">Description</label>
-                <textarea name="description" id="description" required>
+        </nav>
+        <div
+            class="col-md-6 offset-md-3 col-xl-4 offset-xl-4"
+            style="height: 100vh"
+        >
+            <form
+                action="/players/<%= comment._id %>?_method=PUT"
+                method="POST"
+                novalidate
+                class="validated-form mb-3"
+            >
+                <div>
+                    <label class="form-label" for="name">Username</label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        class="form-control mb-3"
+                        placeholder="Username"
+                        value="<%=comment.name%>"
+                        required
+                    />
+                </div>
+                <div>
+                    <label class="form-label" for="title">Title</label>
+                    <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        class="form-control mb-3"
+                        placeholder="Title"
+                        value="<%=comment.title%>"
+                        required
+                    />
+                </div>
+                <div>
+                    <label class="form-label" for="description"
+                        >Description</label
+                    >
+                    <textarea
+                        class="form-control mb-3"
+                        name="description"
+                        id="description"
+                        required
+                    >
 <%=comment.description%></textarea
-                >
+                    >
+                </div>
+                <div>
+                    <button class="btn btn-success">Update</button>
+                    <a class="btn btn-danger" href="/players">Cancel</a>
+                </div>
+            </form>
+        </div>
+        <footer class="footer bg-dark py-3 mt-auto text-center fixed-bottomr">
+            <div class="container">
+                <span class="text-muted">&copy; 2021</span>
             </div>
-            <div>
-                <button>Update</button>
-                <a href="/players">Cancel</a>
-            </div>
-        </form>
+        </footer>
     </body>
 </html>

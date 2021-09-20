@@ -20,6 +20,8 @@ mongoose
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+//Allow the app to use the middleware to parse the req.body
+//the default is undefined
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
