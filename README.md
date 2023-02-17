@@ -4,6 +4,10 @@
 ```
 npm i all
 ```
+# Create data
+```
+node seeds.js
+```
 # Server
 open window powershell
 ```
