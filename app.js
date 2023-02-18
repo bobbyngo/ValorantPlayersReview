@@ -5,8 +5,10 @@ const methodOverride = require('method-override');
 const Player = require('./models/player');
 const Comment = require('./models/comment');
 const mongoose = require('mongoose');
+const initPlayers = require('./seeds');
+
 mongoose
-  .connect('mongodb://127.0.0.1:27017/player', {
+  .connect('mongodb://mongo_db:27017/player', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -25,6 +27,9 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
+
+//init players in mongoose db
+initPlayers();
 
 app.get('/players', async (req, res) => {
   const players = await Player.find({});
